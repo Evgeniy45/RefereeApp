@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Avoid pushing secrets
+/src/main/resources/application.properties

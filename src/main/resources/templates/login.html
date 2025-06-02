@@ -2,9 +2,56 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<h2>Увійти</h2>
-<a href="/oauth2/authorization/google">Увійти через Google</a>
+<div class="login-container">
+    <form method="post" action="/login">
+        <h2>Please sign in</h2>
+        <input type="text" name="username" placeholder="Username" required/>
+        <input type="password" name="password" placeholder="Password" required/>
+        <button type="submit">Sign in</button>
+    </form>
+    <h3>Login with OAuth 2.0</h3>
+    <a href="/oauth2/authorization/google">Google</a>
+</div>
 </body>
 </html>

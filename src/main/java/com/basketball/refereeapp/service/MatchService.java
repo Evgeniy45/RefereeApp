@@ -6,6 +6,7 @@ import com.basketball.refereeapp.repository.MatchRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MatchService {
@@ -24,11 +25,11 @@ public class MatchService {
         return matchRepository.save(match);
     }
 
-    public Match getMatchById(Long id) {
-        return matchRepository.findById(id).orElse(null);
+    public Optional<Match> getMatchById(Long id) {
+        return matchRepository.findById(id);
     }
+
     public List<Match> getMatchesByLeagueLevel(LeagueLevel level) {
         return matchRepository.findByLeagueLevel(level);
     }
-
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Головна сторінка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 50px;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .role {
+            color: #555;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Вітаємо, <span th:text="${username}">Користувач</span>!</h1>
+    <p class="role">Ваша роль: <span th:text="${role}">роль</span></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: referee_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  refereeapp:
+    build: .
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/referee_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_SECURITY_USER_NAME: admin
+      SPRING_SECURITY_USER_PASSWORD: admin
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID: 521666426788-vaeds7mp1qsn1kda03fhnm2j90cuvipl.apps.googleusercontent.com
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET: 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
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_SCOPE: email,profile
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_REDIRECT_URI: '{baseUrl}/login/oauth2/code/{registrationId}'
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_NAME: Google
+      SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GOOGLE_AUTHORIZATION_URI: https://accounts.google.com/o/oauth2/v2/auth
+      SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GOOGLE_TOKEN_URI: https://oauth2.googleapis.com/token
+      SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GOOGLE_USER_INFO_URI: https://www.googleapis.com/oauth2/v3/userinfo
+      SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GOOGLE_USER_NAME_ATTRIBUTE: sub
+    ports:
+      - "8080:8080"
+    command: ["java", "-jar", "/app/app.jar"]
+
+volumes:
+  pgdata:

@@ -18,7 +18,6 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                                         Authentication authentication)
             throws IOException, ServletException {
 
-        // 🔄 Перенаправлення після успішного входу через Google
-        response.sendRedirect("/dashboard"); // зміни на потрібний маршрут
+        response.sendRedirect("/home");
     }
 }

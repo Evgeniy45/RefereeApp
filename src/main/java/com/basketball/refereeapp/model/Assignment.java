@@ -23,4 +23,5 @@ public class Assignment {
     @Enumerated(EnumType.STRING)
     private AssignmentStatus status;
 
+
 }

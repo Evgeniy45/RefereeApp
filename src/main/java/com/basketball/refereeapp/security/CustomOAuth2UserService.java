@@ -14,15 +14,12 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     public OAuth2User loadUser(OAuth2UserRequest userRequest) {
         OAuth2User oAuth2User = super.loadUser(userRequest);
 
-        // 🔍 Отримуємо дані користувача
         Map<String, Object> attributes = oAuth2User.getAttributes();
         String email = (String) attributes.get("email");
         String name = (String) attributes.get("name");
 
-        // 💾 Тут ти можеш зберегти або оновити користувача в базі
         System.out.println("Google OAuth2 login: " + name + " (" + email + ")");
 
-        // Повертаємо користувача як є
         return oAuth2User;
     }
 }
